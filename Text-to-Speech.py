@@ -31,7 +31,8 @@ def Quit():
 def on_closing():
     if os.path.exists('TextSpeech.mp3'):
         os.remove('TextSpeech.mp3')
-        root.destroy()
+    root.destroy()
+
 
 #The GUI declaration and the decoration
 root = Tk()
