@@ -27,6 +27,11 @@ def Quit():
         root.destroy()
     else:                   # this is incase if the user already hit the reset and then hits the Quit button
         root.destroy()
+    
+def on_closing():
+    if os.path.exists('TextSpeech.mp3'):
+        os.remove('TextSpeech.mp3')
+        root.destroy()
 
 #The GUI declaration and the decoration
 root = Tk()
@@ -48,8 +53,9 @@ Button(root, text = 'Reset ╬', font='Helvettica 15 bold', command = Reset, bg=
 Button(root,text = 'Quit',font = 'Helvettica 15 bold' , command = Quit, bg = 'Dark red').place(x=420,y=160)
 # the icons beside 'Play' and 'Reset', got those from Character map-windows
 
-if os.path.exists('TextSpeech.mp3'): # this is me fixing a bug, in case the user closed the window and then hit play with empty text
-    os.remove('TextSpeech.mp3')                          # it wont play the previous speech, next time running the program
-
 #to run the GUI+program
+
+# a protocol- to delete the audio file, when the window is closed abruptly
+#but there is another bug to fix--- to delete that audio file if the python shell is closed/if the program is killed
+root.protocol("WM_DELETE_WINDOW", on_closing)
 root.mainloop()
