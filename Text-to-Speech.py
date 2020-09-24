@@ -4,20 +4,26 @@ from playsound import playsound
 import os
 
 def Text_to_speech():
-    if os.path.exists('TextSpeech.mp3'): # the below else condition takes the input and converts to speech,
-        playsound('TextSpeech.mp3')      #buuuut.... if the user hits play again---this "if" is for that
+
+    if len(Msg.get()) != 0:
+        if os.path.exists('TextSpeech.mp3'): # the below else condition takes the input and converts to speech,
+            playsound('TextSpeech.mp3')      #buuuut.... if the user hits play again---this "if" is for that
+        else:
+           Message = entered_text.get()
+           speech = gTTS(text = Message)
+           speech.save('TextSpeech.mp3')
+           playsound('TextSpeech.mp3')      
     else:
-        Message = entered_text.get()
-        speech = gTTS(text = Message)
-        speech.save('TextSpeech.mp3')
-        playsound('TextSpeech.mp3')
+        print('Please Enter Something in the text box')
+        root.mainloop()
 
 def Reset():
     Msg.set('')
     os.remove('TextSpeech.mp3')
 
 def Quit():
-    if os.path.exists('TextSpeech.mp3'): # this is the normal "Exit" condition
+    if os.path.exists('TextSpeech.mp3'):
+        os.remove('TextSpeech.mp3')             # this is the normal "Exit" condition
         root.destroy()
     else:                   # this is incase if the user already hit the reset and then hits the Quit button
         root.destroy()
@@ -41,5 +47,9 @@ Button(root, text = 'Play ►' , font = 'Helvettica 15 bold', command = Text_to_
 Button(root, text = 'Reset ╬', font='Helvettica 15 bold', command = Reset, bg='yellow').place(x=420, y =90)
 Button(root,text = 'Quit',font = 'Helvettica 15 bold' , command = Quit, bg = 'Dark red').place(x=420,y=160)
 # the icons beside 'Play' and 'Reset', got those from Character map-windows
+
+if os.path.exists('TextSpeech.mp3'): # this is me fixing a bug, in case the user closed the window and then hit play with empty text
+    os.remove('TextSpeech.mp3')                          # it wont play the previous speech, next time running the program
+
 #to run the GUI+program
 root.mainloop()
