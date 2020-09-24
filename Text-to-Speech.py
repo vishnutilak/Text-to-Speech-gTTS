@@ -24,15 +24,12 @@ def Reset():
 def Quit():
     if os.path.exists('TextSpeech.mp3'):
         os.remove('TextSpeech.mp3')             # this is the normal "Exit" condition
-        root.destroy()
-    else:                   # this is incase if the user already hit the reset and then hits the Quit button
-        root.destroy()
+    root.destroy()
     
 def on_closing():
     if os.path.exists('TextSpeech.mp3'):
         os.remove('TextSpeech.mp3')
     root.destroy()
-
 
 #The GUI declaration and the decoration
 root = Tk()
