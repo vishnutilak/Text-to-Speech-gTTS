@@ -30,9 +30,11 @@ def Reset():
         os.remove('TextSpeech.mp3')
     
 def Quit():
+    Reset()
     root.destroy()
     
 def on_closing():
+    Reset()
     root.destroy()
 
 #The GUI declaration and the decoration
