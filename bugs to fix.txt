@@ -1,1 +1,3 @@
 Need to delete the saved audio file if the file abruptly closed
+
+tried getexit.register() func- Reset
