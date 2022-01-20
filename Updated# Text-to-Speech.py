@@ -26,7 +26,8 @@ def Text_to_speech():
 def Reset():
     Msg.set('')
     mixer.quit()
-    os.remove('TextSpeech.mp3')
+    if os.path.exists('Textspeech.mp3'):
+        os.remove('TextSpeech.mp3')
     
 def Quit():
     root.destroy()
