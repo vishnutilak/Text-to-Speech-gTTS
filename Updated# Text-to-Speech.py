@@ -57,3 +57,5 @@ Button(root, text = 'Reset ╬', font='Helvettica 15 bold', command = Reset, bg=
 Button(root,text = 'Quit',font = 'Helvettica 15 bold' , command = Quit, bg = 'Dark red').place(x=420,y=160)
 # the icons beside 'Play' and 'Reset', got those from Character map-windows
 
+root.protocol("WM_DELETE_WINDOW", on_closing)
+root.mainloop()
